@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    compileSdk build_versions.compile_sdk
+
+    defaultConfig {
+        applicationId release.application_id
+        versionCode release.version_code
+        versionName release.version_name
+        minSdk build_versions.min_sdk
+        targetSdk build_versions.target_sdk
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+
+    kapt app_dependencies.google.dagger.hilt_compiler
+
+    implementation app_dependencies.androidx.app_compat
+    implementation app_dependencies.androidx.core_ktx
+    implementation app_dependencies.androidx.navigation.fragment_ktx
+    implementation app_dependencies.androidx.navigation.ui_ktx
+    implementation app_dependencies.androidx.preferences
+    implementation app_dependencies.google.material
+    implementation app_dependencies.google.dagger.hilt_android
+    implementation app_dependencies.square.retrofit
+    implementation app_dependencies.timber
+
+    testImplementation app_dependencies.junit
+
+    androidTestImplementation app_dependencies.androidx.atsl.core
+    androidTestImplementation app_dependencies.androidx.atsl.junit
+
+}
