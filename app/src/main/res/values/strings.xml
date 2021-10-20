@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Anime Facts</string>
+    <string name="anime_image">Anime Image</string>
 </resources>

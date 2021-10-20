@@ -51,7 +51,8 @@ dependencies {
     kapt app_dependencies.google.dagger.hilt_compiler
     kapt app_dependencies.androidx.room.compiler
     kapt app_dependencies.square.moshi_codegen
-    
+    kapt app_dependencies.bumptech.glide_compiler
+
     implementation app_dependencies.androidx.app_compat
     implementation app_dependencies.androidx.core_ktx
     implementation app_dependencies.androidx.navigation.fragment_ktx
@@ -69,6 +70,7 @@ dependencies {
     implementation app_dependencies.square.retrofit
     implementation app_dependencies.square.retrofit_moshi_converter
     implementation app_dependencies.square.retrofit_rxjava
+    implementation app_dependencies.bumptech.glide
     implementation app_dependencies.timber
 
     testImplementation app_dependencies.junit

@@ -15,8 +15,10 @@ import timber.log.Timber
 @AndroidEntryPoint
 class AnimeListFragment: Fragment() {
 
-    private lateinit var binding: FragmentAnimeListBinding
     private val viewModel: AnimeListViewModel by viewModels()
+
+    private lateinit var binding: FragmentAnimeListBinding
+    private lateinit var adapter: AnimeListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,8 @@ class AnimeListFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initAdapter()
+        initRecyclerView()
         viewModel.getAnimeList().observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> handleGetAnimeListLoading()
@@ -37,12 +41,21 @@ class AnimeListFragment: Fragment() {
         })
     }
 
+    private fun initAdapter() {
+        adapter = AnimeListAdapter()
+    }
+
+    private fun initRecyclerView() {
+        binding.recyclerView.adapter = adapter
+    }
+
     private fun handleGetAnimeListLoading() {
         Timber.d("Loading...")
     }
 
     private fun handleGetAnimeListSuccess(animeList: List<Anime>) {
         Timber.i("List loaded: $animeList")
+        adapter.submitList(animeList)
     }
 
     private fun handleGetAnimeListError(error: Throwable) {
