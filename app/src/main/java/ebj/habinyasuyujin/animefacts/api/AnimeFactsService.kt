@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import timber.log.Timber
 
 interface AnimeFactsService {
 
@@ -17,10 +18,17 @@ interface AnimeFactsService {
         private const val BASE_URL = "https://anime-facts-rest-api.herokuapp.com/api/v1/"
 
         fun create(): AnimeFactsService {
-            val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+            val logger = object : HttpLoggingInterceptor.Logger {
+                override fun log(message: String) {
+                    Timber.d(message)
+                }
+            }
+
+            val interceptor = HttpLoggingInterceptor(logger)
+                .apply { level = HttpLoggingInterceptor.Level.BODY }
 
             val client = OkHttpClient.Builder()
-                .addInterceptor(logger)
+                .addInterceptor(interceptor)
                 .build()
 
             return Retrofit.Builder()
