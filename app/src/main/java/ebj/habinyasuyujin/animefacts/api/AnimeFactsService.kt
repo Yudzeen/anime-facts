@@ -8,7 +8,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-interface AnimeFactsApi {
+interface AnimeFactsService {
 
     @GET(".")
     fun getAnimeList(): Single<AnimeFactsListResponse>
@@ -16,7 +16,7 @@ interface AnimeFactsApi {
     companion object {
         private const val BASE_URL = "https://anime-facts-rest-api.herokuapp.com/api/v1/"
 
-        fun create(): AnimeFactsApi {
+        fun create(): AnimeFactsService {
             val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
             val client = OkHttpClient.Builder()
@@ -29,7 +29,7 @@ interface AnimeFactsApi {
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
-                .create(AnimeFactsApi::class.java)
+                .create(AnimeFactsService::class.java)
         }
     }
 

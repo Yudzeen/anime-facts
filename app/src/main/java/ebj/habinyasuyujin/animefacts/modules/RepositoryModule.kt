@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ebj.habinyasuyujin.animefacts.api.AnimeFactsApi
+import ebj.habinyasuyujin.animefacts.api.AnimeFactsService
 import ebj.habinyasuyujin.animefacts.repository.AnimeFactsRepository
 import ebj.habinyasuyujin.animefacts.repository.AnimeFactsRepositoryImpl
 import ebj.habinyasuyujin.animefacts.repository.local.LocalRepository
@@ -34,14 +34,14 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideAnimeFactsApi(): AnimeFactsApi {
-        return AnimeFactsApi.create()
+    fun provideAnimeFactsService(): AnimeFactsService {
+        return AnimeFactsService.create()
     }
 
     @Singleton
     @Provides
-    fun provideRemoteRepository(animeFactsApi: AnimeFactsApi): RemoteRepository {
-        return RemoteRepositoryImpl(animeFactsApi)
+    fun provideRemoteRepository(animeFactsService: AnimeFactsService): RemoteRepository {
+        return RemoteRepositoryImpl(animeFactsService)
     }
 
     @Singleton
