@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.PagerSnapHelper
 import dagger.hilt.android.AndroidEntryPoint
 import ebj.habinyasuyujin.animefacts.databinding.FragmentAnimeListBinding
 import ebj.habinyasuyujin.animefacts.models.Anime
@@ -47,6 +48,8 @@ class AnimeListFragment: Fragment() {
 
     private fun initRecyclerView() {
         binding.recyclerView.adapter = adapter
+        val pagerSnapHelper = PagerSnapHelper()
+        pagerSnapHelper.attachToRecyclerView(binding.recyclerView)
     }
 
     private fun handleGetAnimeListLoading() {

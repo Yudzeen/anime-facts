@@ -29,13 +29,14 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fadeScrollbars="true"
+                android:padding="48dp"
                 android:clipToPadding="false"
+                android:fadeScrollbars="true"
+                android:orientation="horizontal"
                 android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/list_item_anime"
-                tools:itemCount="3"/>
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/list_item_anime" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
