@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="ebj.habinyasuyujin.animefacts.ui.util.Prettify"/>
         <variable
             name="anime"
             type="ebj.habinyasuyujin.animefacts.models.Anime" />
@@ -11,11 +12,11 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/image"
@@ -26,29 +27,22 @@
                 android:scaleType="fitXY"
                 app:errorDrawable="@{@drawable/ic_error_outline}"
                 app:imageUrl="@{anime.imageUrl}"
+                app:layout_constraintDimensionRatio="W,36:24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/guideline"
                 tools:src="@tools:sample/backgrounds/scenic" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.9"/>
 
             <TextView
                 android:id="@+id/title"
-                style="@style/TextAppearance.MaterialComponents.Headline4"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{anime.name}"
+                android:text="@{Prettify.prettifyAnimeName(anime.name)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="Anime Title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

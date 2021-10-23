@@ -1,5 +1,7 @@
 package ebj.habinyasuyujin.animefacts.utils.filter
 
+import ebj.habinyasuyujin.animefacts.models.Anime
+
 object AnimeFilter {
 
     /**
@@ -9,5 +11,10 @@ object AnimeFilter {
         "dragon_ball",
         "itachi_uchiha"
     )
+
+    @JvmStatic
+    fun sortByName(animeList: List<Anime>): List<Anime> {
+        return animeList.sortedBy { it.name }
+    }
 
 }

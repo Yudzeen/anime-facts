@@ -11,6 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ebj.habinyasuyujin.animefacts.databinding.FragmentAnimeListBinding
 import ebj.habinyasuyujin.animefacts.models.Anime
 import ebj.habinyasuyujin.animefacts.utils.Resource
+import ebj.habinyasuyujin.animefacts.utils.filter.AnimeFilter
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -58,7 +59,7 @@ class AnimeListFragment: Fragment() {
 
     private fun handleGetAnimeListSuccess(animeList: List<Anime>) {
         Timber.i("List loaded: $animeList")
-        adapter.submitList(animeList)
+        adapter.submitList(AnimeFilter.sortByName(animeList))
     }
 
     private fun handleGetAnimeListError(error: Throwable) {
